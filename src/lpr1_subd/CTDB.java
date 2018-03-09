@@ -77,6 +77,7 @@ public class CTDB extends javax.swing.JFrame {
         MongoInt connect = new MongoInt();
         connect.Connect(pass.getText());
         
+        
     }//GEN-LAST:event_OKActionPerformed
 
     /**
