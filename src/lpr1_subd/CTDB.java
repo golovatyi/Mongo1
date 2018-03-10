@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package lpr1_subd;
+ 
+import javax.swing.*;
+import java.awt.*;
+import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -28,8 +33,12 @@ public class CTDB extends javax.swing.JFrame {
     private void initComponents() {
 
         OK = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        DBName = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        lbUpper = new javax.swing.JLabel();
+        lbDown = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,7 +49,19 @@ public class CTDB extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Please enter a password from DB cluster");
+        jLabel2.setText("password");
+
+        DBName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DBNameActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Create DB");
+
+        lbUpper.setText("Введите название БД, с которой хотите работать ");
+
+        lbDown.setText("  и пароль от кластера MongoDB Atlas ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,36 +70,71 @@ public class CTDB extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(OK))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(OK)
+                                .addGap(207, 207, 207))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DBName)
+                                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lbDown, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbUpper))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(53, 53, 53)
+                .addComponent(lbUpper, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDown)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pass))
+                .addGap(33, 33, 33)
                 .addComponent(OK)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        MongoInt connect = new MongoInt();
-        connect.Connect(pass.getText());
-        
-        
+
+        MongoInt.Connect(DBName.getText(),pass.getText());
+        try{
+            TimeUnit.MILLISECONDS.sleep(1000);
+            if(MongoInt.status == 0){
+                for(Window w: CTDB.getWindows()){
+                w.setVisible(false);
+                } 
+            } else{
+                lbUpper.setText("База уже существует, попробуйте еще раз");
+                lbDown.setVisible(false);
+            }
+        } catch(InterruptedException ex){}
+
     }//GEN-LAST:event_OKActionPerformed
+
+    private void DBNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DBNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,16 +164,18 @@ public class CTDB extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CTDB().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CTDB().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField DBName;
     private javax.swing.JButton OK;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbDown;
+    private javax.swing.JLabel lbUpper;
     private javax.swing.JPasswordField pass;
     // End of variables declaration//GEN-END:variables
 }
