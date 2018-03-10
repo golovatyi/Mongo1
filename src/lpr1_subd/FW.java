@@ -18,6 +18,9 @@ public class FW {
     String src;
     Scanner file;
     String[] init; //initial array
+
+
+
 // </editor-fold>
 
     // <editor-fold desc="I. Init">
