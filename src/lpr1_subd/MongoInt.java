@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * initialisation of DB
  */
 package lpr1_subd;
 
@@ -13,12 +11,14 @@ import java.io.*;
 import java.util.Iterator;
 import org.bson.Document;
 
-//import com.mongodb.MongoCredential;
-//import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.MongoClientURI;
+
 public class MongoInt {
 
-    
-
+    static MongoDatabase database;
+    static MongoClient mongoClient;
+    static MongoCredential credential;
     public MongoInt() {
         //System.setProperty("encoding", "UTF-8");
     }
@@ -26,23 +26,27 @@ public class MongoInt {
     public static void Connect(String psw) throws MongoTimeoutException, 
             MongoSecurityException, MongoCommandException {
     // Creating a Mongo client
-    System.out.println(psw);
     
     MongoClientURI uri = new MongoClientURI(
-   "mongodb+srv://golovatyi97:"+psw+"@subd-6ipsf.mongodb.net/LPR4Mongo");    // Creating Credentials
-    MongoClient mongoClient = new MongoClient(uri);
-    MongoDatabase database = mongoClient.getDatabase("LPR4Mongo");
-    database.listCollections();
-    MongoCredential credential;
-    credential = MongoCredential.createCredential("golovatyi97", "LPR4Mongo",
+   "mongodb+srv://golovatyi97:"+psw+"@subd-6ipsf.mongodb.net/admin");    
+    // Creating Credentials
+    mongoClient = new MongoClient(uri);
+    database = mongoClient.getDatabase("LPR1Mongo");
+    
+    credential = MongoCredential.createCredential("golovatyi97", "LPR1Mongo",
     psw.toCharArray());
     System.out.println("Connected to the database successfully");
     // Accessing the database
     System.out.println("Credentials ::"+ credential);
+   
+    CreateDB();
+    }
     
+    public static void RetrieveDocs(String name){
     // Retrieving a collection
+    
     MongoCollection<Document> collection =
-    database.getCollection("Zencovki");
+    database.getCollection(name);
     System.out.println("Collection zencovki selected successfully");
     // Getting the iterable object
     FindIterable<Document> iterDoc = collection.find();
@@ -54,6 +58,20 @@ public class MongoInt {
     i++;
     }
     
+    }
+    
+    public static void CreateDB(){
+        //todo: добавить обработчик com.mongodb.MongoCommandException
+        try{
+            database = mongoClient.getDatabase("LPR1Mongo");
+            database.createCollection("init");
+        }catch(MongoCommandException ex){
+            database = mongoClient.getDatabase("LPR1Mongo");
+            MongoCollection mc = database.getCollection("init");
+            mc.drop();
+            database = mongoClient.getDatabase("LPR1Mongo");
+            database.createCollection("init");
+        }
+        }
     
     }
-}

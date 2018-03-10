@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package lpr1_subd;
-
+ 
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author rootsu
@@ -76,8 +78,9 @@ public class CTDB extends javax.swing.JFrame {
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
         MongoInt connect = new MongoInt();
         connect.Connect(pass.getText());
-        
-        
+        for(Window w: CTDB.getWindows()){
+            w.setVisible(false);
+        }
     }//GEN-LAST:event_OKActionPerformed
 
     /**
@@ -108,10 +111,8 @@ public class CTDB extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CTDB().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CTDB().setVisible(true);
         });
     }
 
