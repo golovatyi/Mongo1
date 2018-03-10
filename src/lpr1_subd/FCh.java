@@ -6,6 +6,7 @@
 package lpr1_subd;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 /**
  *
  * @author rootsu
@@ -60,12 +61,18 @@ public class FCh extends javax.swing.JFrame {
     private void FChActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FChActionPerformed
         switch(evt.getActionCommand()){
             case "ApproveSelection":
-                System.out.print(FCh.getSelectedFile().getAbsolutePath());
-              
-                Conversion.Convert(FCh.getSelectedFile().getAbsolutePath(), 
-                        "out.dat", "CP1252", "Windows-1251");
-                
-                
+//                Conversion c = new Conversion();
+//                Conversion.Convert(FCh.getSelectedFile().getAbsolutePath(), 
+//                        FCh.getSelectedFile().getAbsolutePath() + "mod",
+//                        "UTF-8", "CP1252");
+                try{
+                    FW fw = new FW(FCh.getSelectedFile().getAbsolutePath()); 
+                    System.out.print(fw.src);
+                    TimeUnit.MILLISECONDS.sleep(1000);
+                    fw.OneDimPr(fw.Init());
+                }catch(IOException ex){
+                    System.out.print('e');
+                }catch(InterruptedException e){}
                 
             case "CancelSelection":
                 System.exit(0);
