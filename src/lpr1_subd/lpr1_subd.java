@@ -39,17 +39,20 @@ public class lpr1_subd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lbUpper = new javax.swing.JLabel();
         lbDown = new javax.swing.JLabel();
+        MonToRM = new javax.swing.JButton();
+        coll = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        OK.setText("Confirm");
+        OK.setText("RusMark -> Mongo");
         OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OKActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("password");
+        jLabel2.setText("password(*)");
 
         DBName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,11 +60,20 @@ public class lpr1_subd extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Create DB");
+        jLabel1.setText("Create DB(*)");
 
         lbUpper.setText("Введите название БД, с которой хотите работать ");
 
         lbDown.setText("  и пароль от кластера MongoDB Atlas ");
+
+        MonToRM.setText("Mongo -> RusMark");
+        MonToRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MonToRMActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Имя коллекции");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,10 +83,11 @@ public class lpr1_subd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(OK)
-                                .addGap(207, 207, 207))
+                                .addComponent(OK, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(MonToRM, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,7 +95,11 @@ public class lpr1_subd extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(DBName)
-                                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))))
+                                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(coll, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +107,7 @@ public class lpr1_subd extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(lbDown, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbUpper))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,17 +116,22 @@ public class lpr1_subd extends javax.swing.JFrame {
                 .addComponent(lbUpper, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbDown)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(coll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pass))
-                .addGap(33, 33, 33)
-                .addComponent(OK)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(OK, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(MonToRM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -141,6 +163,10 @@ public class lpr1_subd extends javax.swing.JFrame {
     private void DBNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DBNameActionPerformed
+
+    private void MonToRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonToRMActionPerformed
+        
+    }//GEN-LAST:event_MonToRMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,9 +204,12 @@ public class lpr1_subd extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField DBName;
+    private javax.swing.JButton MonToRM;
     private javax.swing.JButton OK;
+    private javax.swing.JTextField coll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbDown;
     private javax.swing.JLabel lbUpper;
     private javax.swing.JPasswordField pass;
