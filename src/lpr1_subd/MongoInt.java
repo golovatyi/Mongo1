@@ -23,6 +23,7 @@ public class MongoInt {
     
     static String DB;
     static String psw;
+    Document dc;
     
     MongoCollection<Document> collection;
     
@@ -95,5 +96,16 @@ public class MongoInt {
     public void CreateCollection(String dsnm){
         database.createCollection(dsnm);
         collection = database.getCollection(dsnm);
+        
+    }
+    
+    public void AppendDoc(String key, String value){
+        dc = new Document();
+        dc.append(key, value);
+ 
+    }
+    public void AppendCollection(){
+        collection.insertOne(dc);
+        dc.clear();
     }
     }

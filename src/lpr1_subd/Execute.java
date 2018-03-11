@@ -13,10 +13,30 @@ public class Execute extends FW{
     
     public Execute(String arg) throws IOException{  
         super(arg);
-        Rusmark();
-         //gathering rusmark
+        Rusmark(); //setting up rusmark
+        SetHM(); //setting up hashmap
+        AppendDB(); 
     }
     public void AP() throws IOException{
         ArrayPrint(rusmark);
     }
-}
+    
+    public final void AppendDB(){
+        for(String[] blck: rusmark){
+            for(String line: blck){
+                if(!"*****".equals(line)){
+                    AppendCollection();
+                }
+                else{
+                    AppendDoc(
+                            kwds.get("#".concat(Integer.toString(
+                            Integer.parseUnsignedInt(line.substring(1, 5))))
+                            ).toString(), "#".concat(Integer.toString(
+                            Integer.parseUnsignedInt(line.substring(5)))));
+                    }
+                }
+            }
+        }
+    }
+    
+
