@@ -68,11 +68,10 @@ public class FCh extends javax.swing.JFrame {
                 try{
                     FW fw = new FW(FCh.getSelectedFile().getAbsolutePath()); 
                     System.out.print(fw.src);
-                    TimeUnit.MILLISECONDS.sleep(1000);
-                    fw.OneDimPr(fw.Init());
+                    fw.ArrayPrint(fw.Rusmark());
                 }catch(IOException ex){
                     System.out.print('e');
-                }catch(InterruptedException e){}
+                }
                 
             case "CancelSelection":
                 System.exit(0);
