@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author rootsu
  */
-public class FW {
+public class FW extends SetDict{
 // <editor-fold desc="globals">
     String src;
     Scanner file;
@@ -134,6 +134,7 @@ public class FW {
      */
     public FW(String name) throws IOException{
         this.src = name;
+        SetHM();
     }    
     /** </editor-fold> */
 }

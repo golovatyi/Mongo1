@@ -75,9 +75,10 @@ public class FCh extends javax.swing.JFrame {
 //                        FCh.getSelectedFile().getAbsolutePath() + "mod",
 //                        "UTF-8", "CP1252");
                 try{
-                    FW fw = new FW(FCh.getSelectedFile().getAbsolutePath()); 
-                    System.out.print(fw.src);
-                    fw.ArrayPrint(fw.Rusmark());
+                    Execute fw = new Execute(FCh.getSelectedFile().getAbsolutePath()); 
+                    
+                    //System.out.print(fw.src);
+                    //fw.ArrayPrint(fw.Rusmark());
                 }catch(IOException ex){
                     System.out.print('e');
                 }
