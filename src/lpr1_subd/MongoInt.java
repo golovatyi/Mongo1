@@ -10,10 +10,13 @@ import com.mongodb.*;
 import java.io.*;
 import java.util.Iterator;
 import org.bson.Document;
+import org.bson.*;
+
 
 import com.mongodb.MongoCredential;
 import com.mongodb.MongoClientURI;
 
+//@SuppressWarnings("unchecked")
 public class MongoInt {
 
     static MongoDatabase database;
@@ -23,7 +26,7 @@ public class MongoInt {
     
     static String DB;
     static String psw;
-    Document dc;
+    Document dc = new Document();
     
     MongoCollection<Document> collection;
     
@@ -93,19 +96,23 @@ public class MongoInt {
         }
     }
 
-    public void CreateCollection(String dsnm){
+    public final void CreateCollection(String dsnm){
         database.createCollection(dsnm);
         collection = database.getCollection(dsnm);
         
     }
     
     public void AppendDoc(String key, String value){
-        dc = new Document();
+        //System.out.println(key + value);
         dc.append(key, value);
+        
  
     }
     public void AppendCollection(){
+        if(!dc.isEmpty()){
         collection.insertOne(dc);
+        }else{System.out.println("Skipped empty document");}
+        
         dc.clear();
     }
     }
