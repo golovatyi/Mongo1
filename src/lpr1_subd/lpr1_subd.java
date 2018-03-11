@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  *
  * @author rootsu
  */
-public class CTDB extends javax.swing.JFrame {
+public class lpr1_subd extends javax.swing.JFrame {
 
     /**
      * Creates new form CTDB
      */
-    public CTDB() {
+    public lpr1_subd() {
         initComponents();
     }
 
@@ -121,8 +121,10 @@ public class CTDB extends javax.swing.JFrame {
         try{
             TimeUnit.MILLISECONDS.sleep(1000);
             if(MongoInt.status == 0){
-                for(Window w: CTDB.getWindows()){
-                w.setVisible(false);
+                for(Window w: lpr1_subd.getWindows()){
+                Close(w);
+                String[] args = new String[0];
+                FCh.main(args);
                 } 
             } else{
                 lbUpper.setText("База уже существует, попробуйте еще раз");
@@ -132,6 +134,9 @@ public class CTDB extends javax.swing.JFrame {
 
     }//GEN-LAST:event_OKActionPerformed
 
+    private void Close(Window w){
+        w.setVisible(false);
+    }
     private void DBNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DBNameActionPerformed
@@ -153,19 +158,20 @@ public class CTDB extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CTDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lpr1_subd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CTDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lpr1_subd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CTDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lpr1_subd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CTDB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lpr1_subd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new CTDB().setVisible(true);
+            new lpr1_subd().setVisible(true);
         });
     }
 

@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Получение на вход текстового файла и возвращение в виде массива для 
+ * дальшейшей работы.
  */
 package lpr1_subd;
 
@@ -127,7 +126,8 @@ public class FW {
     
     // </editor-fold>  
     
-    /** <editor-fold desc="При вызове из GUI задается источник scr. С ним и работаем">
+    /** <editor-fold desc="При вызове из GUI задается источник scr.
+     * С ним и работаем">
      * 
      * @param name - имя файла, с которым работают  ВСЕ файловые методы
      * @throws java.io.IOException
@@ -135,5 +135,5 @@ public class FW {
     public FW(String name) throws IOException{
         this.src = name;
     }    
-    // </editor-fold>
+    /** </editor-fold> */
 }
