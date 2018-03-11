@@ -20,28 +20,41 @@ public class MongoInt {
     static MongoClient mongoClient;
     static MongoCredential credential;
     static int status;
-    public MongoInt() {
-        //System.setProperty("encoding", "UTF-8");
+    
+    static String DB;
+    static String psw;
+    
+    MongoCollection<Document> collection;
+    
+    public MongoInt(){
+        Connect(DB, psw);
+        
+    }
+    
+    public static void Setter(String db, String PSW) {
+        MongoInt.DB = db;
+        MongoInt.psw = PSW;
+        Connect(DB, psw);
     }
     
     public static void Connect(String DB, String psw) throws MongoTimeoutException, 
             MongoSecurityException, MongoCommandException {
-    // Creating a Mongo client
+        // Creating a Mongo client
 
-    MongoClientURI uri = new MongoClientURI(
-   "mongodb+srv://golovatyi97:"+psw+"@subd-6ipsf.mongodb.net/admin");    
-    // Creating Credentials
-    mongoClient = new MongoClient(uri);
-    database = mongoClient.getDatabase("LPR1Mongo");
+        MongoClientURI uri = new MongoClientURI(
+       "mongodb+srv://golovatyi97:"+psw+"@subd-6ipsf.mongodb.net/admin");    
+        // Creating Credentials
+        mongoClient = new MongoClient(uri);
+        database = mongoClient.getDatabase("LPR1Mongo");
 
-    credential = MongoCredential.createCredential("golovatyi97", "LPR1Mongo",
-    psw.toCharArray());
-    System.out.println("Connected to the database successfully");
-    // Accessing the database
-    System.out.println("Credentials ::"+ credential);
-    CreateDB(DB);
+        credential = MongoCredential.createCredential("golovatyi97", "LPR1Mongo",
+        psw.toCharArray());
+        System.out.println("Connected to the database successfully");
+        // Accessing the database
+        System.out.println("Credentials ::"+ credential);
+        CreateDB(DB);
 
-    }
+        }
     
     public static void RetrieveDocs(String name){
     // Retrieving a collection
@@ -79,5 +92,8 @@ public class MongoInt {
         }
     }
 
-    
+    public void CreateCollection(String dsnm){
+        database.createCollection(dsnm);
+        collection = database.getCollection(dsnm);
+    }
     }

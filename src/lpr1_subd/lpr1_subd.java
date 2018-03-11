@@ -117,7 +117,8 @@ public class lpr1_subd extends javax.swing.JFrame {
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
 
-        MongoInt.Connect(DBName.getText(),pass.getText());
+       // MongoInt.Connect(DBName.getText(),pass.getText());
+        MongoInt.Setter(DBName.getText(), pass.getText());
         try{
             TimeUnit.MILLISECONDS.sleep(1000);
             if(MongoInt.status == 0){

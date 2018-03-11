@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author rootsu
  */
-public class FW {
+public class FW extends SetDict{
 // <editor-fold desc="globals">
     String src;
     Scanner file;
@@ -75,7 +75,7 @@ public class FW {
         return max;
     }
     
-    public String[][] Rusmark() throws IOException{ //массив [блоки][строки]
+    public final String[][] Rusmark() throws IOException{ //массив [блоки][строки]
         rusmark = new String[CountBlocks()][max()];
         int i = 0, j = 0;
         for(String s: Init()){
@@ -133,7 +133,9 @@ public class FW {
      * @throws java.io.IOException
      */
     public FW(String name) throws IOException{
+        super();
         this.src = name;
+        SetHM();
     }    
     /** </editor-fold> */
 }
