@@ -17,7 +17,6 @@ public class Execute extends FW{
         Rusmark(); //setting up rusmark
         SetHM(); //setting up hashmap
         CreateCollection(arg);
-        //AP();
         AppendDB(); 
     }
     public void AP() throws IOException{
