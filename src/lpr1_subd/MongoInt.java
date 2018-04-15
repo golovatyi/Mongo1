@@ -17,22 +17,21 @@ import com.mongodb.MongoCredential;
 import com.mongodb.MongoClientURI;
 
 //@SuppressWarnings("unchecked")
-public class MongoInt {
+public class MongoInt extends DetectField {
 
     static MongoDatabase database;
     static MongoClient mongoClient;
     static MongoCredential credential;
     static int status;
     
-    static String DB;
-    static String psw;
-    Document dc = new Document();
+    public static String DB;
+    public static String psw;
+    static Document dc = new Document();
     
     MongoCollection<Document> collection;
     
     public MongoInt(){
         Connect(DB, psw);
-        
     }
     
     public static void Setter(String db, String PSW) {
@@ -102,7 +101,7 @@ public class MongoInt {
         
     }
     
-    public void AppendDoc(String key, String value) {
+    public static void AppendDoc(String key, String value) {
         //System.out.println(key + value);
         dc.append(key, value);
         

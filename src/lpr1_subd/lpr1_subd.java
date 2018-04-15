@@ -15,14 +15,14 @@ import java.util.concurrent.TimeUnit;
  * @author rootsu
  */
 public class lpr1_subd extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form CTDB
      */
     public lpr1_subd() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

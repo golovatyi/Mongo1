@@ -23,7 +23,7 @@ public class FW extends SetDict{
     String[][] rusmark;
     int cblock = 1; 
     int[] crblock; 
-    final String stars = "*****";
+    final String BORDER = "*****";
 
 
 // </editor-fold>
@@ -49,7 +49,7 @@ public class FW extends SetDict{
     
     public int CountBlocks() throws IOException{
         for(String s: Init()){
-            if(s.equals(stars)){
+            if(s.equals(BORDER)){
                 ++cblock;
             }
         }
@@ -60,7 +60,7 @@ public class FW extends SetDict{
         crblock = new int[CountBlocks()];
         int i = 0;
         for(String s: Init()){
-            if(s.equals(stars)){
+            if(s.equals(BORDER)){
                 ++i;
             }else{++crblock[i];}
         }
@@ -79,7 +79,7 @@ public class FW extends SetDict{
         rusmark = new String[CountBlocks()][max()];
         int i = 0, j = 0;
         for(String s: Init()){
-            if(s.equals(stars)){
+            if(s.equals(BORDER)){
                 ++i; j = 0;
             }else{rusmark[i][j] = s; ++j;}
         }

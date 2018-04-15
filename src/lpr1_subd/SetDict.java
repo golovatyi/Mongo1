@@ -1,5 +1,6 @@
 /**
  * Conversion to Mongo and sending collection to Atlas cluster.
+ * Нужно запараметризовать записи.
  */
 package lpr1_subd;
 
@@ -11,15 +12,16 @@ public class SetDict extends MongoInt{
         super();
     }
     
-    public static Map SetHM(){
-        kwds = new HashMap();
+    public static Map SetHM() {
+        kwds = new HashMap();   
+        //++ - добавлен обработчик подполей, либо не требуется
         kwds.put("#1", "Идентификатор");
-        kwds.put("#922", "Версия");
-        kwds.put("#10","Цена");
-        kwds.put("#101","Язык");
+        kwds.put("#922", "Версия");//++
+        kwds.put("#10","ISBN"); //++
+        kwds.put("#101","Язык");//++
         kwds.put("#200", "Заглавие и сведения об ответственности");
-        kwds.put("#102","Страна публикации");
-        kwds.put("#106","Форма документа");
+        kwds.put("#102","Страна публикации");//++
+        kwds.put("#106","Форма документа");//++
         kwds.put("#210", "Публикация распространение и др");
         kwds.put("#215", "Физическая характеристика");
         kwds.put("#225","Серия");
